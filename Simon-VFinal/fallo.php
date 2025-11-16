@@ -9,7 +9,7 @@
     <h1>Simón</h1>
     <?php
         session_start();
-        require_once 'pintarCirculos.php';
+        require_once 'pintar-circulos.php';
 
         $solucion = $_SESSION["solucion"];
         $respuesta = $_SESSION["respuesta"];

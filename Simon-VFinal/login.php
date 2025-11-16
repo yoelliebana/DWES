@@ -48,7 +48,7 @@
                     $_SESSION['loggedin'] = true; // Marca usuario esta auntetificado en la sesion
                     $_SESSION['id'] = $user['Codigo']; // Guarda el id del usuario en la sesion 
                     $_SESSION['Nombre'] = $user['Nombre'];
-                    header("Location: inicio.php");
+                    header("Location: dificultad.php");
                     exit();
                 }         
             } else {

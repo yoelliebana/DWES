@@ -10,7 +10,7 @@
     <h3>Enhorabuena, has ganado</h3>
     <?php
         session_start();
-        require_once 'pintarCirculos.php';
+        require_once 'pintar-circulos.php';
 
         $solucion = $_SESSION["solucion"];
         $numColores = $_SESSION["numColores"];
