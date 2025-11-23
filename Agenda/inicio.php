@@ -21,6 +21,10 @@
     </div>
     <div border="1">
         <?php
+            if (!isset($_SESSION['imgrandarray'])) {
+                $_SESSION['imgrandarray'] = [];
+            }
+
             $imagenes = [
                 1 => 'materiales/OIP0.jfif',
                 2 => 'materiales/OIP1.jfif',
@@ -30,9 +34,16 @@
             ];
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($_POST['INCREMENTAR'])) {
+                    if (count($_SESSION['imgrandarray']) >= 5) { 
+                        header("Location: agenda.php");
+                        exit();
+                    }
                     $indice = rand(1, 5);
                     $imgrandom = $imagenes[$indice];
-                    echo "<img src='$imgrandom'";
+                    $_SESSION['imgrandarray'][] = $imgrandom;
+                    foreach ($_SESSION['imgrandarray'] as $img) {
+                        echo "<img src='$img' width='100' height='100'>";
+                    }
                 }
                 if (isset($_POST['GRABAR'])) {
                     header("Location: agenda.php");
@@ -42,8 +53,8 @@
         ?>
     </div>
     <form method="POST">
-        <input type="submit" value="INCREMENTAR">
-        <input type="submit" value="GRABAR">
+        <input type="submit" name="INCREMENTAR" value="INCREMENTAR">
+        <input type="submit" name="GRABAR" value="GRABAR">
     </form>
 </body>
 </html>
