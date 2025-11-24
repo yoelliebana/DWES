@@ -28,7 +28,11 @@ $result = $conn->query($sql);
     <title>AGENDA</title>
 </head>
 <body>
-    <h2>Usuarios y número de contactos</h2>
+    <h1>AGENDA</h1>
+    <?php
+    $usuario = $_SESSION['name'];
+     echo "<p><strong>Hola $usuario</strong></p>";
+    ?>
 
     <table border="1">
         <thead>
@@ -40,6 +44,16 @@ $result = $conn->query($sql);
             </tr>
         </thead>
         <tbody>
+            <style>
+                .dot {
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    margin: 2px;
+                    background-color: red;
+                    border-radius: 50%;
+                }
+            </style>
         <?php
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -50,7 +64,7 @@ $result = $conn->query($sql);
                 echo "<td>$cod</td>";
                 echo "<td>$nombre</td>";
                 echo "<td>$num</td>";
-                echo "<td class='dots' title='$num contactos'>";
+                echo "<td>";
                 // Mostrar un punto rojo por cada contacto
                 for ($i = 0; $i < $num; $i++) {
                     echo "<span class='dot'></span>";

@@ -1,3 +1,10 @@
+<?php
+session_start();
+    if (!isset($_SESSION['codigo'])) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +15,6 @@
 <body>
     <h1>AGENDA</h1>
     <?php
-    if (!isset($_SESSION['codigo'])) {
-    header("Location: index.php");
-    exit();
-}
-    session_start();
     if (isset($_SESSION['name'])) {
         $usuario = $_SESSION['name'];
         echo "<p>Hola $usuario</p>";
@@ -56,7 +58,6 @@
             $stmt->close();
         }
         $conn->close();
-        unset($_SESSION['imgrandarray']);
         header("Location: grabado.php");
     }
     ?>

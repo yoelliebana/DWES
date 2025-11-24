@@ -7,19 +7,17 @@
 </head>
 <body>
     <h1>AGENDA</h1>
-    <div border="1">
         <?php
         session_start();
         if (isset($_POST['name'])) {
         $_SESSION['name'] = htmlspecialchars($_POST['name']);
 }
         $usuario = $_SESSION['name'];
-        echo "<p>Hola $usuario, ¿cuántos contactos deseas grabar?<br>
+        echo "<table border='1'><tr><td><p>Hola $usuario, ¿cuántos contactos deseas grabar?<br>
         Puedes grabar entre 1 y 5. Por cada pulsación en INCREMENTAR grabarás un usuario más.<br>
-        Cuando el número sea el deseado pulsa GRABAR.</p>"
+        Cuando el número sea el deseado pulsa GRABAR.</p></td></tr></table>"
         ?>
-    </div>
-    <div border="1">
+    <table border="1"><tr>
         <?php
             if (!isset($_SESSION['imgrandarray'])) {
                 $_SESSION['imgrandarray'] = [];
@@ -42,7 +40,7 @@
                     $imgrandom = $imagenes[$indice];
                     $_SESSION['imgrandarray'][] = $imgrandom;
                     foreach ($_SESSION['imgrandarray'] as $img) {
-                        echo "<img src='$img' width='100' height='100'>";
+                        echo "<td><img src='$img' width='100' height='100'></td>";
                     }
                 }
                 if (isset($_POST['GRABAR'])) {
@@ -51,7 +49,7 @@
         }
             
         ?>
-    </div>
+    </tr></table>
     <form method="POST">
         <input type="submit" name="INCREMENTAR" value="INCREMENTAR">
         <input type="submit" name="GRABAR" value="GRABAR">

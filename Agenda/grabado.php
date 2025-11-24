@@ -11,9 +11,9 @@
     session_start();
     if (isset($_SESSION['name'])) {
         $usuario = $_SESSION['name'];
-        echo "<p>Hola $usuario</p>";
+        echo "<p><strong>Hola $usuario</strong></p>";
         echo "Se han grabado los " . count($_SESSION['imgrandarray']) . " contactos correctamente.";
-        echo "<a href='index.php'>Volver a loguearse</a><br>";
+        echo "<br><a href='index.php'>Volver a loguearse</a><br>";
         echo "<a href='inicio.php'>Introducir más contactos para $usuario</a>";
         echo "<a href='totales.php'>Total de contactos guardados</a>";
     } else {
