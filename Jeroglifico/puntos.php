@@ -2,8 +2,8 @@
 session_start();
 
 $hn = "localhost";
-$un = "jugador";
-$pw = "jugador";
+$un = "Jugador";
+$pw = "";
 $db = "jeroglifico";
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) {

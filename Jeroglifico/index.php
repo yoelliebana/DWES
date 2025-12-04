@@ -1,8 +1,8 @@
 <?php
 session_start();
 $hn = "localhost";
-$un = "jugador";
-$pw = "jugador";
+$un = "Jugador";
+$pw = "";
 $db = "jeroglifico";
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) {
@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 
         // BUSCAR USUARIO
         $stmt = $conn->prepare("SELECT login, clave FROM jugador WHERE login=? AND clave=?");
-        $stmt->bind_param("s", $user);
+        $stmt->bind_param("ss", $user, $password);
         $stmt->execute();
         $res = $stmt->get_result();
 
@@ -46,6 +46,8 @@ if ($conn->connect_error) {
         } else {
             echo "<p>Credenciales incorrectas. Inténtalo de nuevo.</p>";
             }
+        } else {
+            echo "<p>Credenciales incorrectas. Inténtalo de nuevo.</p>";
         } 
     }
     ?>

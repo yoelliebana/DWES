@@ -2,8 +2,8 @@
 session_start();
 
 $hn = "localhost";
-$un = "jugador";
-$pw = "jugador";
+$un = "Jugador";
+$pw = "";
 $db = "jeroglifico";
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) {
@@ -77,6 +77,7 @@ $conn->close();
             echo "<tr><td colspan='2'>No hay jugadores acertantes hoy.</td></tr>";
         }
         ?>
+    </table>
     <h2>Jugadores no acertantes: <?php echo $fallos; ?></h2>
     <table border="1">
         <tr>
@@ -92,5 +93,6 @@ $conn->close();
             echo "<tr><td colspan='2'>No hay jugadores no acertantes hoy.</td></tr>";
         }
         ?>
+    </table>
 </body>
 </html>
