@@ -14,7 +14,7 @@ echo "<h1>Fecha: </h1>" . date('d-m-Y') . "<br>";
 $sql = "
     SELECT
         SUM(r.respuesta = s.solucion) AS aciertos,
-        SUM(r.respuesta <> s.solucion) AS fallos
+        SUM(r.respuesta != s.solucion) AS fallos
     FROM respuestas r
     JOIN solucion s ON r.fecha = s.fecha
     WHERE r.fecha = CURDATE()
@@ -47,10 +47,22 @@ $sqlFallos = "
     FROM respuestas r
     JOIN solucion s ON r.fecha = s.fecha
     WHERE r.fecha = CURDATE()
-      AND r.respuesta <> s.solucion
+      AND r.respuesta != s.solucion
     ORDER BY r.hora ASC
 ";
 $resFallos = $conn->query($sqlFallos);
+
+
+$Update = "
+    UPDATE jugador j 
+    SET puntos = puntos + 1
+    WHERE login in (
+        SELECT login FROM respuestas r, solucion
+        WHERE respuesta = solucion AND r.fecha = CURDATE() AND r.fecha = solucion.fecha
+        )
+    ";
+$stmtUpdate = $conn->prepare($Update);
+$stmtUpdate->execute();
 
 $conn->close();
 ?>

@@ -73,6 +73,7 @@ echo "<img src='imagen/20240216.jpg'>";
         $stmt->execute();
         $stmt->close();
 
+        /*
         // Si es su primer acierto del día → sumar 1 punto
         if ($resultCheck->num_rows == 0 && strcasecmp($solucion, $solucionHoy) == 0) {
             $sqlUpdate = "
@@ -85,6 +86,7 @@ echo "<img src='imagen/20240216.jpg'>";
             $stmtUpdate->bind_param("s", $usuario);
             $stmtUpdate->execute();
         }
+        */
 }
 
     }

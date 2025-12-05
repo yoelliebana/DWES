@@ -21,12 +21,9 @@ if ($conn->connect_error) {
     <h1>Puntos por jugador</h1>
     <?php
     $sql = "
-        SELECT r.login, COUNT(*) AS puntos
-        FROM respuestas r
-        JOIN solucion s ON r.fecha = s.fecha
-        WHERE r.respuesta = s.solucion
-        GROUP BY r.login
-        ORDER BY puntos DESC
+        SELECT j.nombre, j.puntos
+        FROM jugador j
+        ORDER BY j.puntos DESC;
     ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -37,10 +34,12 @@ if ($conn->connect_error) {
 
                 </tr>";
         while ($row = $result->fetch_assoc()) {
+            $max = 300;
+            $barra = min($row['puntos'], $max);
             echo "<tr>
-                    <td>" . htmlspecialchars($row['login']) . "</td>
+                    <td>" . htmlspecialchars($row['nombre']) . "</td>
                     <td>" . $row['puntos'] . "</td>
-                    <td style='background-color:blue; width:" . ($row['puntos'] * 10) . "px;'>&nbsp;</td>
+                    <td style='background-color:blue; width:{$barra}px; height:30px;'>&nbsp;</td>
                   </tr>";
         }
         echo "</table>";
