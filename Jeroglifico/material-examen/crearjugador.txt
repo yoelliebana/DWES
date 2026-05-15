@@ -1,0 +1,15 @@
+-- Crear usuario (con contraseña '1234', cámbiala por la que quieras)
+CREATE USER 'jugador'@'localhost' IDENTIFIED BY 'jugador';
+
+-- Otorgar permisos:
+-- Puede leer la tabla jugador
+GRANT SELECT ON jeroglifico.jugador TO 'jugador'@'localhost';
+
+-- Puede leer e insertar en la tabla respuestas
+GRANT SELECT, INSERT ON jeroglifico.respuestas TO 'jugador'@'localhost';
+
+-- Puede leer la tabla solucion
+GRANT SELECT ON jeroglifico.solucion TO 'jugador'@'localhost';
+
+-- Aplicar cambios
+FLUSH PRIVILEGES;
